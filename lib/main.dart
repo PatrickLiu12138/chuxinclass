@@ -1,4 +1,6 @@
 import 'package:flutter/material.dart';
+import './pages/tabs/Tabs.dart';
+import './routers/router.dart';
 
 void main() {
   runApp(MyApp());
@@ -15,12 +17,9 @@ class _MyAppState extends State<MyApp> {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      home: Scaffold(
-        appBar: AppBar(
-          title: Text('出心课堂'),
-        ),
-        body:Text('home')
-      ),
+      // home: Tabs(),
+      onGenerateRoute: onGenerateRoute,
+      initialRoute: '/',
     );
   }
 }
