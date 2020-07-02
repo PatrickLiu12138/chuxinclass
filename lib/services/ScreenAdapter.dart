@@ -1,0 +1,6 @@
+
+class ScreenAdapter{
+  init(content){
+    
+  }
+}
