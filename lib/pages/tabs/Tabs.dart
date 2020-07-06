@@ -3,6 +3,7 @@ import 'Find.dart';
 import 'Home.dart';
 import 'My.dart';
 import 'Learn.dart';
+import 'Category.dart';
 
 class Tabs extends StatefulWidget {
   Tabs({Key key}) : super(key: key);
@@ -13,25 +14,38 @@ class Tabs extends StatefulWidget {
 
 class _TabsState extends State<Tabs> {
   int _currentIndex = 0;
-  List _pageList = [
+  PageController _pageController ;
+
+  List<Widget> _pageList = [
     HomePage(),
-    FindPage(),
+    CategoryPage(),                                 //FindPage(),
     LearnPage(),
-    MyPage()
+    MyPage(),
   ];
   @override
+  void initState(){
+    super.initState();
+    _pageController = new PageController(
+      initialPage: this._currentIndex
+    );
+  }
+
   Widget build(BuildContext context) {
     return Scaffold(
         // appBar: AppBar(
         //   title: Text('出心课堂'),
         // ),
-        body:this._pageList[this._currentIndex],
+        body:PageView(
+          controller:this._pageController,
+          children:this._pageList,
+        ),
         bottomNavigationBar: BottomNavigationBar(
           currentIndex: this._currentIndex,
           type: BottomNavigationBarType.fixed,
           onTap: (index){
             setState(() {
               this._currentIndex = index;
+              this._pageController..jumpToPage(this._currentIndex);
             });
           },
           items: [
